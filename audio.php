@@ -5,7 +5,7 @@ $format = "wav";
 $text = "Hi there from the long content polling API.";
 $voice = "victoria";
 function print_progress($task_progress) {
-  // do something more useful here, to print progress using percent, message and thumbnail
+  // do something more useful here, to print progress using percent and message
   var_dump($task_progress);
 }
 
@@ -14,9 +14,7 @@ require_once "narakeet_api_client.php";
 
 $narakeet_api_client = new NarakeetApiClient($apikey /*, poll interval defaults to 5 seconds*/);
 
-// upload the zip to Narakeet
-// start a build task from the uploaded zip and
-// wait for it to finish
+// start a build task and wait for it to finish
 $task = $narakeet_api_client->request_audio_task($format, $text, $voice);
 $task_result = $narakeet_api_client->poll_until_finished($task["statusUrl"], "print_progress");
 
