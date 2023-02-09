@@ -15,6 +15,8 @@ require_once "narakeet_api_client.php";
 $narakeet_api_client = new NarakeetApiClient($apikey /*, poll interval defaults to 5 seconds*/);
 
 // start a build task and wait for it to finish
+// if the text is not UTF8 encoded, make sure to use utf8_encode($text);
+// if the text is already UTF8 encoded, this is not needed
 $task = $narakeet_api_client->request_audio_task($format, $text, $voice);
 $task_result = $narakeet_api_client->poll_until_finished($task["statusUrl"], "print_progress");
 

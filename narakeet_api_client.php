@@ -10,12 +10,11 @@ class NarakeetApiClient {
     $this->api_url = $api_url;
   }
   public function request_audio_task($format, $text, $voice) {
-    $utf8_request = utf8_encode($text);
     $options = [
       CURLOPT_URL => "$this->api_url/text-to-speech/$format?voice=$voice",
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_POST => true,
-      CURLOPT_POSTFIELDS => $utf8_request,
+      CURLOPT_POSTFIELDS => $text,
       CURLOPT_HTTPHEADER => [
         'Content-Type: application/json',
         "x-api-key: $this->api_key",
